@@ -12,7 +12,7 @@ app.get('/', (req, res) => {
 })
 
 app.get('/user.js', (req, res) => {
-    res.sendFile("./BaseCase/user.js");
+    res.send(RenderUserScript())
 })
 
 app.listen(8013, () => {
@@ -22,4 +22,8 @@ app.listen(8013, () => {
 function RenderMainPage (view = {}) {
     const indexfile = fs.readFileSync("./BaseCase/index.html").toString()
     return mustache.render(indexfile, view)
+}
+
+function RenderUserScript () {
+    return fs.readFileSync("./BaseCase/user.js")    
 }
